@@ -17,6 +17,8 @@ To run this code properly, you may need:
 # How To Run
 Simply open "Expenses Calculator.py"
 
+
+
 Project by ZephyrSapphire
 
 First Python project, built from scratch
