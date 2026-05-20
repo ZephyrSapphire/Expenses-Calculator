@@ -1,4 +1,4 @@
-# Expenses-Calculator
+# Expenses-Calculator V1.0
 Calculates assets, daily and up to yearly expenses.
 
 # Features
