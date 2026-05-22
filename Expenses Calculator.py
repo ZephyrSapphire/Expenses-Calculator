@@ -4,30 +4,30 @@ Products_List = []
 
 def Product_Input():
     while True:
-        Product_Name = str(input("Input Product Name : "))
+        Product_Name = str(input("Input product name : "))
         while True:
             try:
-                Product_Price = float(input("Input Product Price : $"))
+                Product_Price = float(input("Input product price : $"))
                 break
             except ValueError:
-                print("Input A Number!")
+                print("Input a number!")
 
         while True:
-            Product_Duration = (input("Input Product Payment Period (Once, Daily, Weekly, Monthly, Yearly) : "))
+            Product_Duration = (input("Input product payment period (Once, Daily, Weekly, Monthly, Yearly) : "))
             if Product_Duration.lower() not in ["once", "daily", "weekly", "monthly", "yearly"]:
-                print("Try Again")
+                print("Try again")
             else:
                 break
         
         Products_List.append({"Product Name" : Product_Name, "Product Price" : Product_Price, "Product Payment Period" : Product_Duration})
         while True:
-            Loop = str(input("Would You Like To Input Again? (Y/N) : "))
+            Loop = str(input("Would you like to input again? (Y/N) : "))
             if Loop.lower() == "y":
                 break
             elif Loop.lower() == "n":
                 return
             else:
-                print("Try Again")
+                print("Try again")
         
 def Product_And_Price():
         print(tabulate(Products_List, headers="keys", tablefmt="grid"))
@@ -51,7 +51,7 @@ def Product_Total_Price():
     
 def Expenses_Duration(Total):
     while True:
-            Duration = input("Enter Calculation Period (Daily, Weekly, Monthly, Yearly) : ")
+            Duration = input("Enter calculation period (Daily, Weekly, Monthly, Yearly) : ")
             if Duration.lower() == "daily":
                 multiplier = 1
                 break
@@ -65,7 +65,7 @@ def Expenses_Duration(Total):
                 multiplier = 365
                 break
             else:
-                print("Try Again")
+                print("Try again")
 
     Calculated_Data = []
     for products in Products_List:
@@ -95,13 +95,13 @@ def Remove_Products(Products_List):
         print(f"{index + 1}. {product['Product Name']} - ${product["Product Price"]}")
     while True:
         try:
-            Remove = int(input("Select Product Number To Remove : "))
+            Remove = int(input("Select product number to remove : "))
             if 1 <= Remove <= len(Products_List):
                 break
             else:
-                print(f"Input A Number Between 1 and {len(Products_List)}")
+                print(f"Input a number between 1 and {len(Products_List)}")
         except ValueError:
-            print("Input A Number!")
+            print("Input a number!")
     
     Products_List.pop(Remove - 1)
     return Remove
@@ -115,23 +115,45 @@ def Change_Price(Products_List):
             if 1 <= Change <= len(Products_List):
                 break
             else:
-                print(f"Input A Number Between 1 and {len(Products_List)}")
+                print(f"Input a number between 1 and {len(Products_List)}")
         except ValueError:
-            print("Input A Number!")
+            print("Input a number!")
 
     while True:
         try:
-            New_Price = float(input("Input New Price : $"))
+            New_Price = float(input("Input new price : $"))
             break
         except ValueError:
-            print("Input A Number!")
+            print("Input a number!")
 
     Products_List[Change - 1]["Product Price"] = New_Price
+
+def Change_Expense_Period(Products_List):
+    for index, product in enumerate(Products_List):
+        print(f"{index + 1}. {product["Product Name"]} - ${product["Product Price"]}")
+    while True:
+        try:
+            Change_Period = int(input("Select product number to change expense period : "))
+            if 1 <= Change_Period <= len(Products_List):
+                break
+            else:
+                print(f"Input a number between 1 and {len(Products_List)}")
+        except ValueError:
+            print("Input a number!")
+
+    while True:
+        New_Period = input("Input new expense period (Once, Daily, Weekly, Monthly, Yearly) : ")
+        if New_Period.lower() not in ["once", "daily", "weekly", "monthly", "yearly"]:
+            print("Try again")
+        else:
+            break
+
+    Products_List[Change_Period - 1]["Product Payment Period"] = New_Period.lower()
 
 Product_Input()
 
 while True:
-    Features = input("What Would You Like To Do? (Add Product, Remove Product, Show Products, Change Price, Calculate Total Expenses, Quit) : ")
+    Features = input("What Would You Like To Do? (Add Product, Remove Product, Show Products, Change Price, Change Expense Period, Calculate Total Expenses, Quit) : ")
     if Features.lower() == "add product":
         Product_Input()
     elif Features.lower() == "remove product":
@@ -140,6 +162,8 @@ while True:
         Product_And_Price()
     elif Features.lower() == "change price":
         Change_Price(Products_List)
+    elif Features.lower() == 'change expense period':
+        Change_Expense_Period(Products_List)
     elif Features.lower() == "calculate total expenses":
         Total = Product_Total_Price()
         Expenses_Duration(Total)
@@ -147,4 +171,4 @@ while True:
         print("Thank's for calculating, ByeBye!")
         break
     else:
-        print("Try Again")
+        print("Try again")
