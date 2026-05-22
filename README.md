@@ -1,9 +1,13 @@
-# Expenses-Calculator V1.0
+# Expenses-Calculator V1.1
 Calculates assets, daily and up to yearly expenses.
 
 # Features
 In this calculator, you are able to:
-1. Add products, prices, and their payment periods, e.g once, monthly etc.
+### V1.1
+1. Change added product expense period
+
+### V1.0
+1. Add products, prices, and their payment periods, e.g Bills | $2500 | monthly
 2. View listed products in table form
 3. Remove added products
 4. Change prices of added products
