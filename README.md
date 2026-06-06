@@ -1,8 +1,11 @@
-# Expenses-Calculator V1.1
+# Expenses-Calculator V1.2
 Calculates assets, daily and up to yearly expenses.
 
 # Features
 In this calculator, you are able to:
+### V1.2
+1. Store data into CSV
+
 ### V1.1
 1. Change added product expense period
 
